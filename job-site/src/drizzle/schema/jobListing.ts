@@ -1,0 +1,49 @@
+import { boolean, index, integer, pgEnum, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import { createdAt, id, updatedAt } from "../schemaHelpers.ts";
+import { OrganizationTable } from "./organization.ts";
+import { table } from "node:console";
+
+
+export const wageIntervals = ["hourly", "yearly"] as const
+export type WageIntervalType = (typeof wageIntervals)[number]
+export const wageIntervalEnum = pgEnum("job_listings_wage_interval", wageIntervals)
+
+
+export const locationRequirements = ["remote", "in-office", "hybrid"] as const
+export type LocationRequirementType = (typeof locationRequirements)[number]
+export const locationRequirementEnum = pgEnum("job_listings_location_requirement", locationRequirements)
+
+
+export const experienceLevels = ["junior", "mid-level", "senior"] as const
+export type ExperienceLevelType = (typeof experienceLevels)[number]
+export const experienceLevelEnum = pgEnum("job_listings_experience_level", experienceLevels)
+
+
+export const jobListingStatuses = ["draft", "published", "delisted"] as const
+export type JobListingStatusType = (typeof jobListingStatuses)[number]
+export const jobListingStatusEnum = pgEnum("job_listings_status", jobListingStatuses)
+
+export const jobListingTypes = ["internship", "part-time", "full-time"] as const
+export type JobListingTypesType = (typeof jobListingTypes)[number]
+export const jobListingTypeEnum = pgEnum("job_listings_types", jobListingTypes)
+
+export const JobListingTable = pgTable("job_listings", {
+  id,
+  organizationId: varchar().references(() => OrganizationTable.id, {onDelete: "cascade"}).notNull(),
+  title: varchar().notNull(),
+  description: text().notNull(),
+  wage: integer(),
+  wageInterval: wageIntervalEnum(),
+  stageAbbreviation: varchar(),
+  city: varchar(),
+  isFeatured: boolean().notNull().default(false),
+  locationRequirement: locationRequirementEnum().notNull(),
+  experienceLevel: experienceLevelEnum().notNull(),
+  status: jobListingStatusEnum().notNull().default("draft"),
+  type: jobListingTypeEnum().notNull(),
+  postedAt: timestamp({ withTimezone: true}),
+  createdAt,
+  updatedAt
+},
+table => [index().on(table.stageAbbreviation)]
+)
