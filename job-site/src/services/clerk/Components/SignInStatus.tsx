@@ -1,21 +1,31 @@
 import { SidebarMenuButton } from "@/components/ui/sidebar";
-import { SignedOut } from "@clerk/nextjs";
-import { Link, LinkIcon } from "lucide-react";
-import { Suspense } from "react";
+import {
+  SignedOut as ClerkSignedOut,
+  SignedIn as ClerkSignIn,
+} from "@clerk/nextjs";
+import { LinkIcon } from "lucide-react";
+import Link from "next/link";
+import { ReactNode, Suspense } from "react";
 
-const SignInStatus = () => {
+export const SignedOut = ({ children }: { children: ReactNode }) => {
   return (
     <Suspense>
-      <SignedOut>
-        <SidebarMenuButton asChild>
-          <Link href="/sign-in">
-            <LinkIcon />
-            <span>Log In</span>
-          </Link>
-        </SidebarMenuButton>
-      </SignedOut>
+      <ClerkSignedOut>{children}</ClerkSignedOut>
     </Suspense>
   );
 };
 
-export default SignInStatus;
+export const SignedIn = ({ children }: { children: ReactNode }) => {
+  return (
+    <Suspense>
+      <ClerkSignIn>{children}</ClerkSignIn>
+    </Suspense>
+  );
+};
+
+<SidebarMenuButton asChild>
+  <Link href="/sign-in">
+    <LinkIcon />
+    <span>Log In</span>
+  </Link>
+</SidebarMenuButton>;

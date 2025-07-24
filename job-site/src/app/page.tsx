@@ -12,9 +12,9 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { AppSidebarClient } from "./_AppSidebarClient";
+import { SignedOut } from "@/services/clerk/Components/SignInStatus";
+import Link from "next/link";
 import { LinkIcon } from "lucide-react";
-import Link from "next/link.js";
-import { SignedOut } from "@clerk/nextjs";
 
 const HomePage = () => {
   return (
@@ -27,12 +27,28 @@ const HomePage = () => {
               <span className="text-xl text-nowrap">TEST JOBS</span>
             </SidebarHeader>
             <SidebarContent>
-              <SidebarMenu>
-                <SidebarMenuItem></SidebarMenuItem>
-              </SidebarMenu>
+              <SidebarGroup>
+                <SidebarMenu>
+                  <SignedOut>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton asChild>
+                        <Link href="/sign-in">
+                          <LinkIcon />
+                          <span>Log In</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  </SignedOut>
+                </SidebarMenu>
+              </SidebarGroup>
             </SidebarContent>
-            <SidebarGroup></SidebarGroup>
-            <SidebarFooter></SidebarFooter>
+            <SidebarFooter>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton></SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarFooter>
           </Sidebar>
           <main className="flex-1">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
