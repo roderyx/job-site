@@ -4,6 +4,7 @@
     "npm:@clerk/nextjs@^6.25.4": "6.25.4_next@15.4.0-canary.102__react@19.1.0__react-dom@19.1.0___react@19.1.0_react@19.1.0_react-dom@19.1.0__react@19.1.0",
     "npm:@clerk/themes@^2.3.3": "2.3.3",
     "npm:@eslint/eslintrc@3": "3.3.1",
+    "npm:@radix-ui/react-avatar@^1.1.10": "1.1.10_@types+react@19.1.8_@types+react-dom@19.1.6__@types+react@19.1.8_react@19.1.0_react-dom@19.1.0__react@19.1.0",
     "npm:@radix-ui/react-dialog@^1.1.14": "1.1.14_@types+react@19.1.8_@types+react-dom@19.1.6__@types+react@19.1.8_react@19.1.0_react-dom@19.1.0__react@19.1.0",
     "npm:@radix-ui/react-dropdown-menu@^2.1.15": "2.1.15_@types+react@19.1.8_@types+react-dom@19.1.6__@types+react@19.1.8_react@19.1.0_react-dom@19.1.0__react@19.1.0",
     "npm:@radix-ui/react-separator@^1.1.7": "1.1.7_@types+react@19.1.8_@types+react-dom@19.1.6__@types+react@19.1.8_react@19.1.0_react-dom@19.1.0__react@19.1.0",
@@ -742,6 +743,24 @@
         "@types/react-dom"
       ]
     },
+    "@radix-ui/react-avatar@1.1.10_@types+react@19.1.8_@types+react-dom@19.1.6__@types+react@19.1.8_react@19.1.0_react-dom@19.1.0__react@19.1.0": {
+      "integrity": "sha512-V8piFfWapM5OmNCXTzVQY+E1rDa53zY+MQ4Y7356v4fFz6vqCyUtIz2rUD44ZEdwg78/jKmMJHj07+C/Z/rcog==",
+      "dependencies": [
+        "@radix-ui/react-context",
+        "@radix-ui/react-primitive",
+        "@radix-ui/react-use-callback-ref",
+        "@radix-ui/react-use-is-hydrated",
+        "@radix-ui/react-use-layout-effect",
+        "@types/react",
+        "@types/react-dom",
+        "react",
+        "react-dom"
+      ],
+      "optionalPeers": [
+        "@types/react",
+        "@types/react-dom"
+      ]
+    },
     "@radix-ui/react-collection@1.1.7_@types+react@19.1.8_@types+react-dom@19.1.6__@types+react@19.1.8_react@19.1.0_react-dom@19.1.0__react@19.1.0": {
       "integrity": "sha512-Fh9rGN0MoI4ZFUNyfFVNU4y9LUz93u9/0K+yLgA2bwRojxM8JU1DyvvMBabnZPBgMWREAJvU2jjVzq+LrFUglw==",
       "dependencies": [
@@ -1100,6 +1119,17 @@
         "@radix-ui/react-use-callback-ref",
         "@types/react",
         "react"
+      ],
+      "optionalPeers": [
+        "@types/react"
+      ]
+    },
+    "@radix-ui/react-use-is-hydrated@0.1.0_@types+react@19.1.8_react@19.1.0": {
+      "integrity": "sha512-U+UORVEq+cTnRIaostJv9AGdV3G6Y+zbVd+12e18jQ5A3c0xL03IhnHuiU4UV69wolOQp5GfR58NW/EgdQhwOA==",
+      "dependencies": [
+        "@types/react",
+        "react",
+        "use-sync-external-store"
       ],
       "optionalPeers": [
         "@types/react"
@@ -3829,6 +3859,7 @@
         "npm:@clerk/nextjs@^6.25.4",
         "npm:@clerk/themes@^2.3.3",
         "npm:@eslint/eslintrc@3",
+        "npm:@radix-ui/react-avatar@^1.1.10",
         "npm:@radix-ui/react-dialog@^1.1.14",
         "npm:@radix-ui/react-dropdown-menu@^2.1.15",
         "npm:@radix-ui/react-separator@^1.1.7",
