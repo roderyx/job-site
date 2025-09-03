@@ -1,5 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import React, { Suspense } from "react";
+import SidebarUserButtonClient from "./_SidebarUserButtonClient";
 const SidebarUserButton = () => {
   return (
     <Suspense>
@@ -11,8 +12,6 @@ const SidebarUserButton = () => {
 const SidebarUserSuspense = async () => {
   const { userId } = await auth();
 
-  return (
-    <SidebarUserButtonClient user={{ email: "email@mail.com", name: "hola" }} />
-  );
+  return <SidebarUserButtonClient email="email@mail.com" name="hola js" />;
 };
 export default SidebarUserButton;
