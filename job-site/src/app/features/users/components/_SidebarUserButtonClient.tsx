@@ -1,5 +1,5 @@
 "use client";
-import { SidebarMenuButton } from "@/components/ui/sidebar";
+import { SidebarMenuButton, useSidebar } from "@/components/ui/sidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -10,9 +10,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronsUpDown, SettingsIcon, UserIcon } from "lucide-react";
+import {
+  ChevronsUpDown,
+  LogOutIcon,
+  SettingsIcon,
+  UserIcon,
+} from "lucide-react";
 import React from "react";
 import Link from "next/link";
+import { SignOutButton } from "@/services/clerk/Components/AuthButtons";
+import { useClerk } from "@clerk/nextjs";
 
 type UserType = {
   name: string;
@@ -21,7 +28,13 @@ type UserType = {
 };
 
 const SidebarUserButtonClient = (user: UserType) => {
-  const isMobile = useIsMobile();
+  const { isMobile, setOpenMobile } = useSidebar();
+  const { openUserProfile } = useClerk();
+
+  const openProfileHandler = () => {
+    openUserProfile();
+    setOpenMobile(false);
+  };
 
   return (
     <DropdownMenu>
@@ -44,7 +57,7 @@ const SidebarUserButtonClient = (user: UserType) => {
           <UserInfo {...user} />
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => openUserProfile()}>
+        <DropdownMenuItem onClick={openProfileHandler}>
           <UserIcon className="mr-2" /> Profile
         </DropdownMenuItem>
         <DropdownMenuSeparator />
@@ -53,6 +66,12 @@ const SidebarUserButtonClient = (user: UserType) => {
             <SettingsIcon className="mr-2" /> Settings
           </Link>
         </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <SignOutButton>
+          <DropdownMenuItem>
+            <LogOutIcon className="mr-2" /> Log Out
+          </DropdownMenuItem>
+        </SignOutButton>
       </DropdownMenuContent>
     </DropdownMenu>
   );

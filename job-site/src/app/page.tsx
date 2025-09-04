@@ -16,6 +16,7 @@ import { SignedOut } from "@/services/clerk/Components/SignInStatus";
 import Link from "next/link";
 import { LinkIcon } from "lucide-react";
 import SidebarUserButton from "./features/users/components/SidebarUserButton";
+import { SignedIn } from "@clerk/nextjs";
 
 const HomePage = () => {
   return (
@@ -43,13 +44,15 @@ const HomePage = () => {
                 </SidebarMenu>
               </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter>
-              <SidebarMenu>
-                <SidebarMenuItem>
-                  <SidebarUserButton />
-                </SidebarMenuItem>
-              </SidebarMenu>
-            </SidebarFooter>
+            <SignedIn>
+              <SidebarFooter>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarUserButton />
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarFooter>
+            </SignedIn>
           </Sidebar>
           <main className="flex-1">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate
